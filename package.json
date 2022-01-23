@@ -8,11 +8,13 @@
   },
   "scripts": {
     "db:console": "docker compose exec postgres psql -h localhost -U postgres -d webapp_dev",
+    "rebuild:be": "docker compose build backend && docker compose rm --stop backend && docker compose up -d backend",
     "build": "rimraf dist && swc ./src -d dist",
     "start": "node dist/index.js",
     "start:docker": "yarn build && node --inspect=0.0.0.0 dist/index.js"
   },
   "dependencies": {
+    "@prisma/client": "3.8.1",
     "express": "^4.17.2",
     "morgan": "^1.10.0",
     "typescript": "^4.5.5"
@@ -26,6 +28,7 @@
     "@types/node": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
-    "eslint": "^8.7.0"
+    "eslint": "^8.7.0",
+    "prisma": "^3.8.1"
   }
 }
